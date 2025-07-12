@@ -2,20 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sphere Volume Calculator</title>
+  <title>My Page</title>
 </head>
 <body>
 
   <form onsubmit="volume_sphere(); return false;">
     <label for="radius">Radius:</label>
     <input type="text" id="radius" name="radius" />
-    <input type="submit" value="Calculate" />
-    <br /><br />
+
+    <!-- IMPORTANT: Add the required id="submit" here -->
+    <input type="submit" id="submit" value="Calculate" />
+
+    <br><br>
     <label for="volume">Volume:</label>
     <input type="text" id="volume" name="volume" readonly />
   </form>
 
-  <script src="script.js"></script>
+  <script>
+    function volume_sphere() {
+      const radiusInput = document.getElementById('radius').value;
+      const radius = parseFloat(radiusInput);
+      const volumeField = document.getElementById('volume');
+
+      if (isNaN(radius) || radius < 0) {
+        volumeField.value = 'NaN';
+        return;
+      }
+
+      const volume = (4 / 3) * Math.PI * Math.pow(radius, 3);
+      volumeField.value = volume.toFixed(4);
+    }
+  </script>
+
 </body>
 </html>
+
 
